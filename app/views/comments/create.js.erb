@@ -1,0 +1,9 @@
+$('div#error_explanation').remove();
+
+<% if @comment.valid?  %>
+	$("div#comments").prepend("<%= escape_javascript(render :partial => @comment) %>");
+	$("#<%= dom_id(@comment) %>").effect("highlight");
+	$('form#new_comment')[0].reset();	
+<% else %>
+	$('div#submit_comment').prepend('<%= escape_javascript(render :partial => "form_errors", :locals => {:comment => @comment })%>').effect("highlight");
+<% end %>

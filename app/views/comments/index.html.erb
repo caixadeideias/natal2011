@@ -1,5 +1,5 @@
-<div id="new_comment">
-	<%= form_for(@comment) do |f| %>
+<div id="submit_comment">
+	<%= form_for(@comment, :remote => true) do |f| %>
 		<%= render "form_errors", :comment => @comment %>
 		
 		<div class="field">
@@ -21,12 +21,7 @@
 <h1>Veja quem já comentou no nosso mural de Natal</h1>
 
 <div id="comments">
-	
-	<% @comments.each do |comment| %>
-		<div id="#{dom_id(comment)}" class="comment">
-			<h4><%= comment.username %></h4>
-			<p><%= comment.content %></p>
-		</div>
-	<% end %>
-	
+	<% if @comments.present? %>
+		<%= render :partial => "comment", :collection => @comments %>
+	<% end %>	
 </div>

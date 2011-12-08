@@ -25,6 +25,12 @@ describe CommentsController do
   
   describe "POST create" do
     
+    # In order to not get a nil error, need to assign @comments as Comment.all here too    
+    it "@comments should not be nil" do
+      post :create, :comment => valid_attributes
+      assigns(:comments).should_not be_nil
+    end
+    
     context "when valid" do
             
       it "assigns the comment as @comment" do
@@ -55,8 +61,9 @@ describe CommentsController do
       
       it "should render the new template" do
         post :create, :comment => {}
-        response.should render_template(:new)
-      end    
+        response.should render_template(:index)
+      end
+       
     end
     
   end

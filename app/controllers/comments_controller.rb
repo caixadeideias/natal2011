@@ -6,21 +6,23 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(params[:comment])
-    
-    if @comment.save
-      redirect_to root_path
-    else
-      render :new
+    @comments = Comment.all # => not cool this to be here...
+      
+    respond_to do |format| 
+      if @comment.save
+        format.html { redirect_to root_path }
+        format.js { render "create.js.erb" }
+      else
+        format.html { render :index }
+        format.js { render "create.js.erb" }
+      end
     end
   end
 
-  def destroy
+  # def destroy
   #   @comment = Comment.find(params[:id])
   #   @comment.destroy
-  # 
-  #   respond_to do |format|
-  #     format.html { redirect_to comments_url }
-  #     format.json { head :ok }
-  #   end
-  end
+  #
+  #   respond_with @comment
+  # end
 end
