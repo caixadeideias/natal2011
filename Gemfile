@@ -14,10 +14,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem 'database_cleaner'
-end
-
 group :test, :development do
   gem 'rspec-rails'
   gem 'launchy'
@@ -25,19 +21,11 @@ end
 
 group :test do
   # Pretty printed test output
+  gem 'database_cleaner'
   gem 'turn', '< 0.8.3'
-  gem 'cucumber-rails'
   gem 'factory_girl_rails'
+  gem "capybara"
 end
-
-
-
-
-
-
-
-
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

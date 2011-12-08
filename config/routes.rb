@@ -1,4 +1,9 @@
 Natal2011::Application.routes.draw do
+  
+  root :to => 'comments#index'  
+  
+  resources :comments, :only => [:index, :create, :destroy]
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

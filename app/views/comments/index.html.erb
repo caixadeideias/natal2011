@@ -1,0 +1,32 @@
+<div id="new_comment">
+	<%= form_for(@comment) do |f| %>
+		<%= render "form_errors", :comment => @comment %>
+		
+		<div class="field">
+			<%= f.label :username, "Seu nome/sua empresa:" %>
+			<%= f.text_field :username %>
+		</div>
+		
+		<div class="field">
+			<%= f.label :content, "Comentário:" %>
+			<%= f.text_area :content %>
+		</div>
+
+	  <div class="actions">
+	    <%= f.submit "Publicar" %>
+	  </div>
+	<% end %>
+</div>
+
+<h1>Veja quem já comentou no nosso mural de Natal</h1>
+
+<div id="comments">
+	
+	<% @comments.each do |comment| %>
+		<div id="#{dom_id(comment)}" class="comment">
+			<h4><%= comment.username %></h4>
+			<p><%= comment.content %></p>
+		</div>
+	<% end %>
+	
+</div>
